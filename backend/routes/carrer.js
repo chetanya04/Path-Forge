@@ -18,7 +18,7 @@ router.post('/suggest', async (req, res) => {
     `;
 
     const response = await groq.chat.completions.create({
-      model: "llama-3.1-8b-instant",
+      model: "openai/gpt-oss-20b",
       messages: [
         { role: "user", content: prompt }
       ]
@@ -35,8 +35,9 @@ router.post('/suggest', async (req, res) => {
 
     res.json({ careerSuggestions: careers });
   } catch (error) {
-    res.status(500).json({ message: "Server error" });
-  }
+  console.error("Career suggest error:", error.message);
+  res.status(500).json({ message: "Server error" });
+}
 });
 
 module.exports = router;

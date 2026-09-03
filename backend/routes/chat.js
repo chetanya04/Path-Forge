@@ -37,7 +37,7 @@ router.post("/", async (req, res) => {
     messageHistory.push({ role: "user", content: message });
 
     const chatCompletion = await groq.chat.completions.create({
-      model: "llama-3.1-8b-instant",
+      model: "openai/gpt-oss-20b",
       messages: messageHistory,
       temperature: 0.7,
       max_tokens: 300

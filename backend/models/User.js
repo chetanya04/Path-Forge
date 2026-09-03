@@ -19,9 +19,16 @@ const userSchema = new mongoose.Schema({
     required: true,
     minlength: 6
   },
+  skills: [{ type: String }],
+  education: [String],
+  career: { type: String },
+experience: [String],
+digestDay: { type: Number, default: 1 },
+digestHour: { type: Number, default: 8 },  
+digestMinute: { type: Number, default: 0 },
 }, {
   timestamps: true 
-});
+})
 
 userSchema.pre('save', async function (next) {
   // Only hash if password is new or modified

@@ -1,0 +1,511 @@
+/* =========================================================
+   SKILL GAP DASHBOARD STYLES
+   ========================================================= */
+
+:root {
+  --primary: #4f46e5;
+  --primary-hover: #4338ca;
+  --bg-page: #f8fafc;
+  --bg-card: #ffffff;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --border-color: #e2e8f0;
+  
+  --success-bg: #ecfdf5;
+  --success-text: #059669;
+  --success-bar: #10b981;
+  
+  --warning-bg: #fff1f2;
+  --warning-text: #e11d48;
+  --warning-bar: #f43f5e;
+  
+  --radius-lg: 16px;
+  --radius-md: 10px;
+  --radius-sm: 6px;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.skillgap-wrapper {
+  min-height: 100vh;
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  padding: 32px 16px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+}
+
+.skillgap-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* ----------------- HEADER ----------------- */
+.skillgap-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  color: var(--text-muted);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.back-btn:hover {
+  background: #f1f5f9;
+  color: var(--text-main);
+}
+
+.badge-target {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 2px;
+}
+
+.role-title {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: -0.5px;
+}
+
+.refresh-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  padding: 10px 16px;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-main);
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+}
+
+.refresh-btn:hover:not(:disabled) {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* ----------------- STATS GRID ----------------- */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-icon-wrapper {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.match-icon { background: #e0e7ff; color: var(--primary); }
+.acquired-icon { background: var(--success-bg); color: var(--success-text); }
+.missing-icon { background: var(--warning-bg); color: var(--warning-text); }
+
+.stat-label {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.stat-value-group {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.stat-value {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.stat-sub {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.stat-progress-bar {
+  margin-top: 14px;
+  background: #f1f5f9;
+  height: 6px;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.stat-progress-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.6s ease-in-out;
+}
+
+/* ----------------- TOOLBAR & FILTERS ----------------- */
+.dashboard-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.filter-tabs {
+  display: flex;
+  background: #e2e8f0;
+  padding: 4px;
+  border-radius: var(--radius-md);
+  gap: 4px;
+}
+
+.filter-btn {
+  border: none;
+  background: transparent;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.filter-btn.active {
+  background: var(--bg-card);
+  color: var(--text-main);
+  box-shadow: var(--shadow-sm);
+}
+
+.pill-count {
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 12px;
+  background: #cbd5e1;
+  color: var(--text-main);
+}
+
+.pill-count.success { background: #d1fae5; color: #065f46; }
+.pill-count.warning { background: #ffe4e6; color: #9f1239; }
+
+.search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-width: 260px;
+  flex: 1;
+  max-width: 360px;
+}
+
+.search-box svg {
+  position: absolute;
+  left: 12px;
+  color: var(--text-muted);
+}
+
+.search-box input {
+  width: 100%;
+  padding: 10px 36px 10px 36px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  color: var(--text-main);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.search-box input:focus {
+  border-color: var(--primary);
+}
+
+.clear-search {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+/* ----------------- SKILL CARDS ----------------- */
+.skills-card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.skill-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 18px 22px;
+  display: grid;
+  grid-template-columns: 240px 1fr 140px;
+  align-items: center;
+  gap: 20px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.skill-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.skill-identity {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.status-icon-badge {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.status-icon-badge.acquired {
+  background: var(--success-bg);
+  color: var(--success-text);
+}
+
+.status-icon-badge.missing {
+  background: var(--warning-bg);
+  color: var(--warning-text);
+}
+
+.skill-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.skill-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.skill-type {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* Progress bar inside row */
+.skill-progress-section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.progress-label-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+}
+
+.progress-caption {
+  color: var(--text-muted);
+}
+
+.progress-val {
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.bar-track {
+  width: 100%;
+  background: #f1f5f9;
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.bar-indicator {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fill-acquired {
+  background: var(--success-bar);
+}
+
+.fill-missing {
+  background: var(--warning-bar);
+}
+
+/* Status Pill Badges */
+.skill-badge-wrapper {
+  text-align: right;
+}
+
+.badge-status-acquired {
+  display: inline-block;
+  background: var(--success-bg);
+  color: var(--success-text);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.badge-status-missing {
+  display: inline-block;
+  background: var(--warning-bg);
+  color: var(--warning-text);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* ----------------- SKELETON / EMPTY / ERROR ----------------- */
+.skeleton-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.skeleton-row {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeleton-avatar { width: 34px; height: 34px; border-radius: 50%; background: #e2e8f0; }
+.skeleton-text { width: 140px; height: 16px; background: #e2e8f0; border-radius: 4px; }
+.skeleton-bar { flex: 1; height: 10px; background: #e2e8f0; border-radius: 4px; }
+.skeleton-badge { width: 80px; height: 24px; background: #e2e8f0; border-radius: 12px; }
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.empty-card, .error-card {
+  text-align: center;
+  padding: 48px 20px;
+  background: var(--bg-card);
+  border: 1px dashed var(--border-color);
+  border-radius: var(--radius-lg);
+}
+
+.empty-card h3 {
+  margin: 12px 0 4px;
+  color: var(--text-main);
+}
+
+.empty-card p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.retry-btn {
+  margin-top: 14px;
+  padding: 8px 18px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ----------------- RESPONSIVE (MOBILE & TABLET) ----------------- */
+@media (max-width: 768px) {
+  .skillgap-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header-right {
+    width: 100%;
+  }
+
+  .refresh-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .dashboard-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-box {
+    max-width: 100%;
+  }
+
+  .skill-card {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding: 16px;
+  }
+
+  .skill-badge-wrapper {
+    text-align: left;
+  }
+}

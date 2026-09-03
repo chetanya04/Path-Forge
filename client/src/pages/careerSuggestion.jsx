@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import api from '../api';
 import { useLocation, useNavigate } from 'react-router-dom';
 import '../css/careerSuggestion.css';
+import { Link } from 'react-router-dom';
 
 export default function CareerSuggestion() {
   const { state } = useLocation();
@@ -48,7 +49,12 @@ export default function CareerSuggestion() {
               <span className="career-name">{career}</span>
               <span className="arrow">→</span>
             </button>
+
           ))}
+
+          <Link to="/jobs" className="job-tracker-btn">
+  View Matching Jobs
+</Link>
         </div>
       )}
     </div>

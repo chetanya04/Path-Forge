@@ -2,13 +2,16 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 require("dotenv").config();
-
+const skillGapRoute= require('./routes/skillGap')
 const chatRoute = require("./routes/chat");
 const careerRoute = require("./routes/carrer");
 const studentRoute = require("./routes/studentRoute");
 const authRoutes = require("./routes/authRoute");
-
+const jobRoute = require("./routes/jobRoutes");
 const app = express();
+const resumeRoute = require("./routes/ResumeRoute");
+const { startDigestCron } = require("./services/digestCron");
+const digestRoute = require("./routes/digestRoute")
 
 app.use(cors({
   origin: "http://localhost:3000",
@@ -25,6 +28,11 @@ app.use("/api/chat", chatRoute);
 app.use("/api/career", careerRoute);
 app.use("/api/auth", authRoutes);
 app.use("/api/student", studentRoute);
+app.use("/api/skills", skillGapRoute);
+app.use("/api", jobRoute);
+app.use("/api/resume", resumeRoute);
+startDigestCron();
+app.use("/api/digest", digestRoute);
 
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
