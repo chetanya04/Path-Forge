@@ -1,11 +1,5 @@
-const nodemailer = require("nodemailer");
-
-const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST,
-  port: Number(process.env.SMTP_PORT),
-  secure: process.env.SMTP_SECURE === "true",
-  auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS },
-});
+const { Resend } = require("resend");
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 function digestHtml({ name, jobs }) {
   const jobsHtml = jobs.map(j => `<li><a href="${j.url}">${j.title}</a> @ ${j.company}</li>`).join("");
@@ -16,12 +10,13 @@ function digestHtml({ name, jobs }) {
 }
 
 async function sendDigest(digest) {
-  await transporter.sendMail({
+  const { error } = await resend.emails.send({
     from: process.env.DIGEST_FROM_EMAIL,
     to: digest.to,
     subject: "Your Weekly Career Digest",
     html: digestHtml(digest),
   });
+  if (error) throw new Error(error.message);
 }
 
 module.exports = { sendDigest };

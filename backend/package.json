@@ -24,6 +24,7 @@
     "node-cron": "^4.6.0",
     "nodemailer": "^9.1.0",
     "nodemon": "^3.1.10",
-    "pdf-parse": "^2.4.5"
+    "pdf-parse": "^2.4.5",
+    "resend": "^6.26.0"
   }
 }
